@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="NewsApp.CardView" >
+    <ContentView.Content>
+        <Frame BorderColor="LightGray" CornerRadius="5"  Padding="0"   HorizontalOptions="FillAndExpand">
+            <Frame.GestureRecognizers HorizontalOptions="FillAndExpand">
+                <TapGestureRecognizer Tapped="ClickGestureRecognizer_Clicked">
+                </TapGestureRecognizer>
+            </Frame.GestureRecognizers>
+            <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"></RowDefinition>
+                <RowDefinition Height="auto"></RowDefinition>
+                <RowDefinition Height="auto"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+                <Label Text="{Binding Author}" Grid.Row="0" Margin="5"  Grid.Column="0" TextColor="Black" MaxLines="3" LineBreakMode="WordWrap" x:Name="Author" VerticalOptions="StartAndExpand" HorizontalOptions="FillAndExpand"></Label>
+                <Label Text="{Binding PublishedAt}" Grid.Row="0" Margin="5"  Grid.Column="1" x:Name="Time" VerticalOptions="StartAndExpand" HorizontalOptions="End"></Label>
+                <Label Text="{Binding Title}" Grid.Row="1" Margin="5" Grid.ColumnSpan="2" Grid.Column="0" TextColor="Black" FontAttributes="Bold"  LineBreakMode="TailTruncation" MaxLines="2" VerticalOptions="StartAndExpand" HorizontalOptions="FillAndExpand"></Label>
+                <Image Source="{Binding UrlToImage}"  Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2"  Aspect="AspectFill" HorizontalOptions="FillAndExpand" VerticalOptions="StartAndExpand"></Image>
+            </Grid>
+        </Frame>
+    </ContentView.Content>
+</ContentView>

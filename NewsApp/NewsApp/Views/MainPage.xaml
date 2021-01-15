@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:NewsApp"
+             
+             x:Class="NewsApp.MainPage"  BackgroundColor="White" NavigationPage.HasBackButton="False" >
+    <NavigationPage.TitleView>
+        <Label Text="Новости" Margin="0" HorizontalOptions="CenterAndExpand" FontAttributes="Bold" TextColor="Black"  FontSize="Medium"/>
+    </NavigationPage.TitleView>
+
+
+    <StackLayout HorizontalOptions="FillAndExpand" Margin="0,0,0,15" >
+        <BoxView HeightRequest="2" HorizontalOptions="FillAndExpand" BackgroundColor="#F0F0F0" IsVisible="{Binding IsSeparatorVisible}"/>
+        <SearchBar Margin="0,0,18,0"  Placeholder="Поиск"  TextChanged="SearchBar_TextChanged" SearchButtonPressed="SearchBar_SearchButtonPressed"></SearchBar>
+
+        <Label x:Name="loadingLable" FontSize="Medium" FontAttributes="Bold" Text="Loading..." HorizontalOptions="CenterAndExpand" VerticalOptions="Center"/>
+
+        <ScrollView Scrolled="ScrollView_Scrolled">
+            <StackLayout x:Name="Stack" HorizontalOptions="FillAndExpand" Margin="20,7,20,7">
+
+            </StackLayout>
+        </ScrollView>
+    </StackLayout>
+
+
+</ContentPage>
