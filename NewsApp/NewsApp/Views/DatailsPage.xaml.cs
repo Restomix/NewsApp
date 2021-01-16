@@ -1,4 +1,7 @@
-﻿using System;
+﻿using NewsApp.Navigation;
+using NewsApp.Service;
+using NewsApp.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -15,11 +18,14 @@ namespace NewsApp
     {
        
         private ArticleViewModel Article { get; set; }
-        public DatailsPage (ArticleViewModel article)
+        public DatailsPage(ArticleViewModel article)
 		{
 			InitializeComponent();
             Article = article;
-            this.BindingContext = Article;
+            var pageService = new PageService();
+            var articleStore = new GetRequestApi();
+          //  this.BindingContext = Article;
+            this.BindingContext = new ArticlePageDatailsView(article, articleStore, pageService);
         }
         
 

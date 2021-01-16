@@ -4,18 +4,26 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Text;
 using System.Windows.Input;
+using Xamarin.Forms;
 
 namespace NewsApp
 {
     public class ArticleViewModel : BaseModel
     {
-        public ICommand OpenBrowser{ get; }
         private Article article;
 
         public ArticleViewModel()
         {
             article = new Article();
-            OpenBrowser = new OpenBrowserCommand(this);
+        }
+        public ArticleViewModel(Article article)
+        {
+            this.article = article;
+            Title = article.Title;
+            PublishedAt = article.PublishedAt?.ToString("dd MMM yyyy hh:mm");
+            UrlToImage = article.UrlToImage;
+            Author = article.Author;
+            Content = article.Content;
         }
 
         public string Title
@@ -100,6 +108,17 @@ namespace NewsApp
                     article.PublishedAt = DateTime.Parse(value);
                     OnPropertyChanged("publishedAt");
                 }
+            }
+        }
+        public ImageSource ArticleImage
+        {
+            get
+            {
+                if (!string.IsNullOrWhiteSpace(UrlToImage))
+                {
+                    return ImageSource.FromUri(new Uri(this.UrlToImage));
+                }
+                return null;
             }
         }
     }

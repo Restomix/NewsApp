@@ -1,4 +1,5 @@
-﻿using System;
+﻿using NewsApp.Views;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Net;
@@ -13,7 +14,7 @@ namespace NewsApp
         public App()
         {
             InitializeComponent();
-            MainPage = new NavigationPage(new MainPage());
+            MainPage = new NavigationPage(new ArticleViewPage());
         }
 
         protected override void OnStart()

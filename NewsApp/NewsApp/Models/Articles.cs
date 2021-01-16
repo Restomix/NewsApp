@@ -8,6 +8,6 @@ namespace NewsApp.Models
     {
         public string Status { get; set; }
         public int TotalResults { get; set; }
-        public List<ArticleViewModel> Articles { get; set; }
+        public List<Article> Articles { get; set; }
     }
 }

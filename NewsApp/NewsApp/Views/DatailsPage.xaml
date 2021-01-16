@@ -24,11 +24,11 @@
                     <ColumnDefinition></ColumnDefinition>
                 </Grid.ColumnDefinitions>
                 
-            <Label Text="{Binding Author}" x:Name="Author" Grid.Row="1" Margin="5" Grid.Column="0" TextColor="Black"  VerticalOptions="StartAndExpand" HorizontalOptions="Start"></Label>
-            <Label Text="{Binding PublishedAt}" x:Name="Time" Grid.Row="1" Margin="5"  Grid.Column="1" VerticalOptions="StartAndExpand" HorizontalOptions="End"></Label>
-            <Label Text="{Binding Title}" Grid.Row="2" Margin="5" TextColor="Black" FontAttributes="Bold" Grid.ColumnSpan="2" LineBreakMode="WordWrap" Grid.Column="0" x:Name="Title" VerticalOptions="StartAndExpand" HorizontalOptions="FillAndExpand"></Label>
-            <Label Text="{Binding Content}" Grid.Row="3" Margin="5" TextColor="Black" Grid.ColumnSpan="2" LineBreakMode="WordWrap" Grid.Column="0" x:Name="ContentNews" VerticalOptions="StartAndExpand" HorizontalOptions="FillAndExpand"></Label>
-            <Image Source="{Binding UrlToImage}" Grid.Row="0" Grid.ColumnSpan="2" Grid.Column="0" Aspect="AspectFill"  HorizontalOptions="FillAndExpand" VerticalOptions="StartAndExpand" x:Name="Image"></Image>
+            <Label Text="{Binding Path=Article.Author}" x:Name="Author" Grid.Row="1" Margin="5" Grid.Column="0" TextColor="Black"  VerticalOptions="StartAndExpand" HorizontalOptions="Start"></Label>
+            <Label Text="{Binding Path=Article.PublishedAt}" x:Name="Time" Grid.Row="1" Margin="5"  Grid.Column="1" VerticalOptions="StartAndExpand" HorizontalOptions="End"></Label>
+            <Label Text="{Binding Path=Article.Title}" Grid.Row="2" Margin="5" TextColor="Black" FontAttributes="Bold" Grid.ColumnSpan="2" LineBreakMode="WordWrap" Grid.Column="0" x:Name="Title" VerticalOptions="StartAndExpand" HorizontalOptions="FillAndExpand"></Label>
+            <Label Text="{Binding Path=Article.Content}" Grid.Row="3" Margin="5" TextColor="Black" Grid.ColumnSpan="2" LineBreakMode="WordWrap" Grid.Column="0" x:Name="ContentNews" VerticalOptions="StartAndExpand" HorizontalOptions="FillAndExpand"></Label>
+            <Image Source="{Binding Path=Article.ArticleImage}" Grid.Row="0" Grid.ColumnSpan="2" Grid.Column="0" Aspect="AspectFill"  HorizontalOptions="FillAndExpand" VerticalOptions="StartAndExpand" x:Name="Image"></Image>
             <Button Grid.Row="4" Margin="2" Grid.ColumnSpan="2" Command="{Binding OpenBrowser}" BackgroundColor="DimGray" TextColor="White" VerticalOptions="End" HorizontalOptions="Fill" Text="Читать полностью"></Button>
         </Grid>
 
