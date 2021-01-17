@@ -24,16 +24,9 @@ namespace NewsApp
             Article = article;
             var pageService = new PageService();
             var articleStore = new GetRequestApi();
-          //  this.BindingContext = Article;
-            this.BindingContext = new ArticlePageDatailsView(article, articleStore, pageService);
+            this.BindingContext = new ArticlePageDatailsViewModel(article, articleStore, pageService);
         }
         
-
-        private void Button_Clicked(object sender, EventArgs e)
-        {
-            Device.OpenUri(new Uri(Article.Url));
-        }
-
         private void OnSwiped(object sender, SwipedEventArgs e)
         {
             App.Current.MainPage.Navigation.PopAsync();

@@ -4,25 +4,38 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Windows.Input;
+using Xamarin.Forms;
 
 namespace NewsApp.ViewModels
 {
-    public class ArticlePageDatailsView
+    public class ArticlePageDatailsViewModel
     {
         private readonly IArticleStore _articleStore;
         private readonly IPageService _pageService;
         public ICommand OpenBrowser { get; set; }
         public ArticleViewModel Article { get; set; }
-        public ArticlePageDatailsView(ArticleViewModel viewModel, IArticleStore articleStore, IPageService pageService)
+        public ArticlePageDatailsViewModel(ArticleViewModel viewModel, IArticleStore articleStore, IPageService pageService)
         {   
             if(viewModel!=null)
             {
                 _articleStore = articleStore;
                 _pageService = pageService;
-                OpenBrowser = new OpenBrowserCommand(viewModel);
                 Article = viewModel;
-                
+                OpenBrowser = new Command(() => { RunBrowser(); });
+
             }
+        }
+        public async void RunBrowser()
+        {
+            if (!string.IsNullOrWhiteSpace(Article?.Url))
+                Device.OpenUri(new Uri(Article.Url));
+
+            else
+            {
+                await _pageService.DisplayAlert("Error", "Url is not established", "ok");
+            }
+               
+                  
         }
     }
 }

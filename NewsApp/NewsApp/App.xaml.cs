@@ -6,6 +6,7 @@ using System.Net;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
+
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 namespace NewsApp
 {
@@ -15,6 +16,7 @@ namespace NewsApp
         {
             InitializeComponent();
             MainPage = new NavigationPage(new ArticleViewPage());
+            
         }
 
         protected override void OnStart()

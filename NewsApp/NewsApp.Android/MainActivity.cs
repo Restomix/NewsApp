@@ -6,7 +6,7 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using Android.OS;
-
+using FFImageLoading.Forms.Platform;
 namespace NewsApp.Droid
 {
     [Activity(Label = "NewsApp", Icon = "@mipmap/icon", Theme = "@style/MainTheme", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
@@ -19,6 +19,8 @@ namespace NewsApp.Droid
 
             base.OnCreate(savedInstanceState);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
+
+            CachedImageRenderer.Init(false);
             LoadApplication(new App());
         }
     }

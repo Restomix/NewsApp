@@ -10,16 +10,15 @@ namespace NewsApp.Service
 {
     public class GetRequestApi : IArticleStore
     {
-        private Task<string> DownloadingArticles = null;
-        public Uri GetApiUri { get; set; }
+        //private Task<string> DownloadingArticles = null;
         //as working with SQlight
         public GetRequestApi()
         {
-            
+           
         }
         public async Task<IEnumerable<Article>> GetArticlesAsync()
         {
-            Uri searchUri = new Uri("http://newsapi.org/v2/top-headlines?country=us&category=business&apiKey=876fb0c5266a47b8a28930e0f5c0e7ae");
+            Uri searchUri = new Uri(Constants.BaseUri + string.Format(Constants.Articles, Constants.ApiKey));
 
             return await new WebClient().DownloadStringTaskAsync(searchUri).ContinueWith(x =>
             {
@@ -31,13 +30,9 @@ namespace NewsApp.Service
 
         public async Task<IEnumerable<Article>> SearchArticlesAsync(string key)
         {
-            Uri searchUri = new Uri("http://newsapi.org/v2/everything?q=" 
-            + key + 
-            "&from=2021-01-01&to=2021-01-06&sortBy=popularity&apiKey=876fb0c5266a47b8a28930e0f5c0e7ae");
+            Uri searchUri = new Uri(Constants.BaseUri + string.Format(Constants.Search, key, "2021-01-10", "2021-01-16", Constants.ApiKey));
 
-            DownloadingArticles = new WebClient().DownloadStringTaskAsync(searchUri);
-
-            return await DownloadingArticles.ContinueWith(x =>
+            return await new WebClient().DownloadStringTaskAsync(searchUri).ContinueWith(x =>
             {   
                 var json = x.Result;
                 DbArticles articles = JsonConvert.DeserializeObject<DbArticles>(json);

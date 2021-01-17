@@ -10,7 +10,7 @@ using Xamarin.Forms;
 
 namespace NewsApp.ViewModels
 {
-    public class ArticlesPageViewModel: BaseModel
+    public class ArticlesPageViewModel : BaseModel
     {
         private ArticleViewModel _selectedArticle;
         private bool _isDataLoaded;
@@ -34,7 +34,7 @@ namespace NewsApp.ViewModels
             get { return _selectedArticle; }
             set { SetValue(ref _selectedArticle, value); }
         }
-        public async Task SearchArticles(string key)
+        private async Task SearchArticles(string key)
         {
             if (!string.IsNullOrWhiteSpace(key))
             {
@@ -47,7 +47,7 @@ namespace NewsApp.ViewModels
         }
         private async Task LoadData()
         {
-             if (_isDataLoaded)
+            if (_isDataLoaded)
                 return;
 
             _isDataLoaded = true;
@@ -57,12 +57,13 @@ namespace NewsApp.ViewModels
         }
         private async Task SelectArticle(ArticleViewModel article)
         {
-            if(article == null )
+            if (article == null)
             {
                 return;
             }
             SelectedArticle = null;
             await _pageService.PushAsync(new DatailsPage(article));
+
         }
 
 

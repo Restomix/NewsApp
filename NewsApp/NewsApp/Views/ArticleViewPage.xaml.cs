@@ -12,24 +12,25 @@ using Xamarin.Forms.Xaml;
 
 namespace NewsApp.Views
 {
-	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class ArticleViewPage : ContentPage
-	{
-		public ArticleViewPage ()
-		{
-			InitializeComponent ();
+    [XamlCompilation(XamlCompilationOptions.Compile)]
+    public partial class ArticleViewPage : ContentPage
+    {
+        public ArticleViewPage()
+        {
+            InitializeComponent();
             var articleStore = new GetRequestApi();
             var pageService = new PageService();
-            BindingContext = new ArticlesPageViewModel(articleStore, pageService);  
+
+            BindingContext = new ArticlesPageViewModel(articleStore, pageService);
         }
         protected override void OnAppearing()
         {
-            ViewModel.LoadArticlesCommand.Execute(null); 
+            ViewModel.LoadArticlesCommand.Execute(null);
             base.OnAppearing();
         }
         void OnArticleSelected(object sender, SelectedItemChangedEventArgs e)
         {
-           // ViewModel.SelectArticleCommand.Execute(e.SelectedItem);
+            ViewModel.SelectArticleCommand.Execute(e.SelectedItem);
         }
         public ArticlesPageViewModel ViewModel
         {
@@ -38,7 +39,7 @@ namespace NewsApp.Views
         }
 
         private void SearchBar_TextChanged(object sender, TextChangedEventArgs e)
-        {   
+        {
             ViewModel.SearchArticlesCommand.Execute(e.NewTextValue);
         }
 
@@ -49,7 +50,7 @@ namespace NewsApp.Views
 
         private void ListView_ItemTapped(object sender, ItemTappedEventArgs e)
         {
-            ViewModel.SelectArticleCommand.Execute(e.Item);
+            //ViewModel.SelectArticleCommand.Execute(e.Item);
         }
     }
 }

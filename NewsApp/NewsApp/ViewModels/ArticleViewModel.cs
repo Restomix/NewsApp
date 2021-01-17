@@ -10,20 +10,21 @@ namespace NewsApp
 {
     public class ArticleViewModel : BaseModel
     {
-        private Article article;
+        private Article article = new Article();
 
         public ArticleViewModel()
         {
-            article = new Article();
+            //article = new Article();
         }
         public ArticleViewModel(Article article)
         {
-            this.article = article;
             Title = article.Title;
             PublishedAt = article.PublishedAt?.ToString("dd MMM yyyy hh:mm");
             UrlToImage = article.UrlToImage;
+            Url = article.Url;
             Author = article.Author;
             Content = article.Content;
+            Description = article.Description;
         }
 
         public string Title
@@ -119,6 +120,17 @@ namespace NewsApp
                     return ImageSource.FromUri(new Uri(this.UrlToImage));
                 }
                 return null;
+            }
+        }
+        public bool HasImage
+        {
+            get
+            {
+                if (!string.IsNullOrWhiteSpace(UrlToImage))
+                {
+                    return true;
+                }
+                return false;
             }
         }
     }
