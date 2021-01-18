@@ -15,7 +15,7 @@ namespace NewsApp
         public App()
         {
             InitializeComponent();
-            MainPage = new NavigationPage(new ArticleViewPage());
+            MainPage = new NavigationPage(new LoginingPage());
             
         }
 

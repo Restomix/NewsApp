@@ -29,7 +29,7 @@
             <Label Text="{Binding Path=Article.Content}" Grid.Row="3" Margin="5" TextColor="Black" Grid.ColumnSpan="2" LineBreakMode="WordWrap" Grid.Column="0" x:Name="ContentNews" VerticalOptions="StartAndExpand" HorizontalOptions="FillAndExpand"></Label>
             <!--<Image Source="{Binding Path=Article.ArticleImage}" Grid.Row="0" Grid.ColumnSpan="2" Grid.Column="0" Aspect="AspectFill"  HorizontalOptions="FillAndExpand" VerticalOptions="StartAndExpand" x:Name="Image"></Image>-->
             <ffimageloading:CachedImage HeightRequest="300" WidthRequest="300"
-                                        Source="{Binding Article.ArticleImage}" IsVisible="{Binding Article.HasImage}" 
+                                        Source="{Binding Path=Article.ArticleImage}" IsVisible="{Binding Path=Article.HasImage}" 
                                         BitmapOptimizations ="False" RetryDelay="250" DownsampleToViewSize = "True"  
                                         Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"  
                                         Aspect="AspectFit" HorizontalOptions="FillAndExpand" 
