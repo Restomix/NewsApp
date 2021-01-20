@@ -9,32 +9,12 @@
 
         <converter:InverseBoolConverter x:Key="InverseBoolConverter"/>
         <converter:FirstValidationErrorConverter x:Key="FirstValidationErrorConverter"/>
-        <Style x:Key="ErrorTextStyle" TargetType="Label">
-            <Setter Property="TextColor" Value="Red" />
-            <Setter Property="FontSize" Value="12" />
-        </Style>
-        <Style x:Key="EntryStyle" TargetType="controls:StandardEntry">
-            <!--  <Setter Property="BorderColor" Value="#E5E5E5" />-->
-
-            <Setter Property="CornerRadius" Value="3"></Setter>
-            <Setter Property="BorderThickness" Value="1"></Setter>
-            <Setter Property="PlaceholderColor" Value="LightGray"></Setter>
-            <Setter Property="BackgroundColor" Value="White"></Setter>
-            <Setter Property="TextColor" Value="Black"></Setter>
-            <Setter Property="Padding" Value="10"></Setter>
-            <Setter Property="Margin" Value="5"></Setter>
-
-        </Style>
-        <Style x:Key="LoginStyleButton" TargetType="Button">
-            <Setter Property="Margin" Value="5" ></Setter>
-            <Setter Property="BackgroundColor" Value="#3D3D3D"></Setter>
-            <Setter Property="TextColor" Value="White"></Setter>
-        </Style>
+       
     </ContentPage.Resources>
     <ContentPage.Content>
         <StackLayout VerticalOptions="CenterAndExpand" HorizontalOptions="FillAndExpand">
             <!--  Email  -->
-            <controls:StandardEntry Text="{Binding Email.Value, Mode=TwoWay}" Placeholder="Email" Style="{StaticResource EntryStyle}">
+            <controls:StandardEntry Text="{Binding Email.Value, Mode=TwoWay}" Placeholder="Email" Style="{StaticResource Key=EntryStyle}">
                 <controls:StandardEntry.Behaviors>
                     <behaviour:EntryLineValidationBehaviour IsValid="{Binding Email.IsValid}"></behaviour:EntryLineValidationBehaviour>
                     <behaviour:EventToCommandBehavior EventName="Unfocused" Command="{Binding ValidateLogin}"></behaviour:EventToCommandBehavior>
@@ -44,11 +24,11 @@
            
             <Label Text="{Binding Email.Errors, Converter={StaticResource FirstValidationErrorConverter}}"
                         IsVisible="{Binding Email.IsValid, Converter={StaticResource InverseBoolConverter}}"
-                        Style="{StaticResource ErrorTextStyle}"/>
+                        Style="{StaticResource  Key=ErrorTextStyle}"/>
 
             <!--  Email  -->
             <!--  Password -->
-            <controls:StandardEntry IsPassword="True" Placeholder="Пароль" Text="{Binding Password.Value, Mode=TwoWay}" Style="{StaticResource EntryStyle}">
+            <controls:StandardEntry IsPassword="True" Placeholder="Пароль" Text="{Binding Password.Value, Mode=TwoWay}" Style="{StaticResource  Key=EntryStyle}">
                 <controls:StandardEntry.Behaviors>
                     <behaviour:EntryLineValidationBehaviour IsValid="{Binding Password.IsValid}"></behaviour:EntryLineValidationBehaviour>
                     <behaviour:EventToCommandBehavior EventName="Unfocused" Command="{Binding ValidatePassword}"></behaviour:EventToCommandBehavior>
@@ -58,13 +38,13 @@
             <!--  Password -->
             <Label Text="{Binding Password.Errors, Converter={StaticResource FirstValidationErrorConverter}}"
                         IsVisible="{Binding Password.IsValid, Converter={StaticResource InverseBoolConverter}}"
-                        Style="{StaticResource ErrorTextStyle}"></Label>
-            
-            <Button Command="{Binding Login}" Style="{StaticResource LoginStyleButton}" Text="Войти" />
+                        Style="{StaticResource  Key=ErrorTextStyle}"></Label>
+
+            <Button Command="{Binding Login}" Style="{StaticResource  Key=LoginStyleButton}" Text="Войти" />
            
             <StackLayout Margin="10" HorizontalOptions="CenterAndExpand" IsVisible="{ Binding LoginAction} ">
-            <Label Style="{StaticResource ErrorTextStyle}">*Неверный логин или пароль</Label>
-            <Label Style="{StaticResource ErrorTextStyle}">Пожалуйста, попробуйте снова</Label>
+                <Label Style="{StaticResource  Key=ErrorTextStyle}">*Неверный логин или пароль</Label>
+                <Label Style="{StaticResource  Key=ErrorTextStyle}">Пожалуйста, попробуйте снова</Label>
             </StackLayout>
 
         </StackLayout>

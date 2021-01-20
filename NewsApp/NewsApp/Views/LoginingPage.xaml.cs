@@ -18,14 +18,11 @@ namespace NewsApp.Views
 		public LoginingPage ()
 		{
 			InitializeComponent ();
-            var pageService = new PageService();
-            this.BindingContext = new LoginingPageViewModel(new UserViewModel(new Models.User()), pageService);
            
 		}
         public LoginingPageViewModel ViewModel
         {
-            get { return BindingContext as LoginingPageViewModel; }
-            set { BindingContext = value; }
+            get => BindingContext as LoginingPageViewModel;
         }
 
     }

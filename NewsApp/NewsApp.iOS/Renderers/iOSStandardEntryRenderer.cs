@@ -22,7 +22,7 @@ namespace NewsApp.iOS.Renderers
             var control = new UITextFieldPadding(RectangleF.Empty)
             {
                 Padding = ElementV2.Padding,
-                BorderStyle = UITextBorderStyle.RoundedRect, 
+                BorderStyle = UITextBorderStyle.RoundedRect,
                 ClipsToBounds = true
             };
 
@@ -33,7 +33,7 @@ namespace NewsApp.iOS.Renderers
 
         protected void UpdateBackground(UITextField control)
         {
-            if(control == null) return;
+            if (control == null) return;
             control.Layer.CornerRadius = ElementV2.CornerRadius;
             control.Layer.BorderWidth = ElementV2.BorderThickness;
             control.Layer.BorderColor = ElementV2.BorderColor.ToCGColor();
@@ -78,11 +78,11 @@ namespace NewsApp.iOS.Renderers
         public UITextFieldPadding()
         {
         }
-        public UITextFieldPadding(NSCoder coder):base(coder)
+        public UITextFieldPadding(NSCoder coder) : base(coder)
         {
         }
 
-        public UITextFieldPadding(CGRect rect):base(rect)
+        public UITextFieldPadding(CGRect rect) : base(rect)
         {
         }
 

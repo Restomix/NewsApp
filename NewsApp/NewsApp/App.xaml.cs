@@ -1,4 +1,6 @@
-﻿using NewsApp.Views;
+﻿using NewsApp.Navigation;
+using NewsApp.ViewModels;
+using NewsApp.Views;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -15,7 +17,7 @@ namespace NewsApp
         public App()
         {
             InitializeComponent();
-            MainPage = new NavigationPage(new LoginingPage());
+            MainPage = new NavigationPage(new LoginingPage() { BindingContext = new LoginingPageViewModel() });
             
         }
 

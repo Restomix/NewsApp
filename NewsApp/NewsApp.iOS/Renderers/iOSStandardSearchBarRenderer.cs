@@ -34,8 +34,8 @@ namespace NewsApp.iOS.Renderers
                 textField.Layer.BorderColor = UIColor.LightGray.CGColor;
                 textField.Layer.CornerRadius = 8.0f;
             }
-
-            UpdateCancelButton();
+            
+           // UpdateCancelButton();
         }
-	}
+    }
 }

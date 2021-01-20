@@ -1,4 +1,5 @@
-﻿using NewsApp.Navigation;
+﻿using NewsApp.Models;
+using NewsApp.Navigation;
 using NewsApp.Service;
 using NewsApp.Views;
 using System;
@@ -14,9 +15,9 @@ namespace NewsApp.ViewModels
 {
     public class LoginingPageViewModel : BaseModel
     {
-        private readonly IPageService _pageService;
         private LoginService _loginService { get; set; }
-        public UserViewModel User { get; set; }
+        private readonly IPageService _pageService;
+        public IUser User { get; set; }
         public ICommand ValidateLogin { get; set; }
         public ICommand ValidatePassword { get; set; }
         public ICommand Login { get; set; }
@@ -26,27 +27,21 @@ namespace NewsApp.ViewModels
         private bool _onLoginAction;
         public bool LoginAction
         {
-            get { return _onLoginAction; }
-            set
-            {
-                if (value != _onLoginAction)
-                {
-                    _onLoginAction = value;
-                    OnPropertyChanged("LoginAction");
-                }
-            }
+            get => _onLoginAction; 
+            set => SetValue(ref _onLoginAction, value);
         }
 
-        public LoginingPageViewModel(UserViewModel user, IPageService pageService)
-        {   
+        public LoginingPageViewModel()
+        {
+            //Model
+            this.User = new Models.User();
             //Validation
             Email.Validations.Add(new IsNotNullOrEmptyRule<string> { ValidationMessage = "Email required" });
             Email.Validations.Add(new IsValidEmailRule<string> { ValidationMessage = "Invalid Email" });
             Password.Validations.Add(new IsNotNullOrEmptyRule<string> { ValidationMessage = "Password required" });
             ///Service
-            User = user;
-            _pageService = pageService;
             _loginService = new LoginService();
+            this._pageService = new PageService();
             //Commands
             Login = new Command(async () => { await LoginActionTask(); });
             ValidateLogin = new Command(() => ValidateLoginMethod());
@@ -71,7 +66,7 @@ namespace NewsApp.ViewModels
         {
             if (Password.IsValid && Email.IsValid)
             {
-                User = new UserViewModel(new Models.User() { Password = Password.Value, Email = Email.Value });
+                User = new Models.User() { Password = Password.Value, Email = Email.Value };
                 // var _user = await _loginService.GetUserByEmail(User.Email);
                 await _loginService.GetUserByEmailAndPassword(User.Email, User.Password).ContinueWith(x =>
                 {
@@ -80,7 +75,7 @@ namespace NewsApp.ViewModels
                         Device.BeginInvokeOnMainThread(async () =>
                         {
                             User.IsLoggedIn = true;
-                            await _pageService.DisplayAlert(x.Result.Email, "Welcome", "Thank you", "Exit");
+                            await _pageService.DisplayAlert(x.Result.Email, "Welcome", "Thank you", "Next");
                             await _pageService.PushAsync(new ArticleViewPage());
                         });
 

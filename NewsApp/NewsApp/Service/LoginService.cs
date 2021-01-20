@@ -16,7 +16,7 @@ namespace NewsApp.Service
         {
             return await Task.Run<User>(() =>
             {
-                return DbUsers.Users.Find(x => { return ((Email == x?.Email) ? true : false); });
+                return DbUsers.Users.Find(x => { return ((Email == x.Email) ? true : false); });
             });
 
         }
