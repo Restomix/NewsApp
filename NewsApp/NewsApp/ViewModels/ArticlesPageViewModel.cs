@@ -14,7 +14,7 @@ namespace NewsApp.ViewModels
     {
         private ArticleViewModel _selectedArticle;
         private bool _isDataLoaded;
-        public ObservableCollection<ArticleViewModel> Articles { get; private set; } = new ObservableCollection<ArticleViewModel>();
+        public MvxObservableCollection<ArticleViewModel> Articles { get; private set; } = new MvxObservableCollection<ArticleViewModel>();
         public ICommand LoadArticlesCommand { get; private set; }
         public ICommand SelectArticleCommand { get; private set; }
         public ICommand SearchArticlesCommand { get; private set; }
@@ -40,8 +40,7 @@ namespace NewsApp.ViewModels
             {
                 var articles = await _articleStore.SearchArticlesAsync(key);
                 Articles.Clear();
-                foreach (var article in articles)
-                    Articles.Add(new ArticleViewModel(article));
+                Articles.AddRange(articles);
             }
             return;
         }
@@ -52,8 +51,7 @@ namespace NewsApp.ViewModels
 
             _isDataLoaded = true;
             var articles = await _articleStore.GetArticlesAsync();
-            foreach (var article in articles)
-                Articles.Add(new ArticleViewModel(article));
+            Articles.AddRange(articles);
         }
         private async Task SelectArticle(ArticleViewModel article)
         {

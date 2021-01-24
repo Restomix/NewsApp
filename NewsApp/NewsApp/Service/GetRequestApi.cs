@@ -16,7 +16,7 @@ namespace NewsApp.Service
         {
            
         }
-        public async Task<IEnumerable<Article>> GetArticlesAsync()
+        public async Task<IEnumerable<ArticleViewModel>> GetArticlesAsync()
         {
             Uri searchUri = new Uri(Constants.BaseUri + string.Format(Constants.Articles, Constants.ApiKey));
 
@@ -24,11 +24,11 @@ namespace NewsApp.Service
             {
                 var json = x.Result;
                 DbArticles articles = JsonConvert.DeserializeObject<DbArticles>(json);
-                return articles.Articles;
+                return articles.Articles?.ConvertAll(new Converter<Article, ArticleViewModel>(ArticleToArticleVM));
             });
         }
 
-        public async Task<IEnumerable<Article>> SearchArticlesAsync(string key)
+        public async Task<IEnumerable<ArticleViewModel>> SearchArticlesAsync(string key)
         {
             Uri searchUri = new Uri(Constants.BaseUri + string.Format(Constants.Search, key, "2021-01-10", "2021-01-16", Constants.ApiKey));
 
@@ -36,9 +36,14 @@ namespace NewsApp.Service
             {   
                 var json = x.Result;
                 DbArticles articles = JsonConvert.DeserializeObject<DbArticles>(json);
-                return articles.Articles;
+                return articles.Articles?.ConvertAll(new Converter<Article, ArticleViewModel>(ArticleToArticleVM));
             });
            
         }
+        public ArticleViewModel ArticleToArticleVM(Article article)
+        {
+            return new ArticleViewModel(article);
+        }
+
     }
 }

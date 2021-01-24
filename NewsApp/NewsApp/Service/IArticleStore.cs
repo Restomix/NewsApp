@@ -7,7 +7,7 @@ namespace NewsApp.Service
 {
     public interface IArticleStore
     {
-        Task<IEnumerable<Article>> GetArticlesAsync();
-        Task<IEnumerable<Article>> SearchArticlesAsync(string key);
+        Task<IEnumerable<ArticleViewModel>> GetArticlesAsync();
+        Task<IEnumerable<ArticleViewModel>> SearchArticlesAsync(string key);
     }
 }
